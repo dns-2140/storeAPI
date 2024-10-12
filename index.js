@@ -7,8 +7,10 @@ const {
   updateProduct,
   deleteProduct,
 } = require('./config/db');
+const morgan = require('morgan');
 
 app.use(express.json());
+app.use(morgan('tiny'));
 app.get('/', (req, res) => {
   res.send('Hitting root route');
 });
