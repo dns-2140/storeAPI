@@ -16,7 +16,7 @@ const getAllProducts = async (req, res) => {
       data,
     });
   } catch (error) {
-    console.log(error.message);
+    res.status(500).json({ status: 'error', message: error.message });
   }
 };
 
@@ -32,7 +32,7 @@ const getProductById = async (req, res) => {
         .json({ status: 'unsuccessful', message: 'cannot find product' });
     }
   } catch (error) {
-    console.log(error.message);
+    res.status(500).json({ status: 'error', message: error.message });
   }
 };
 
@@ -44,7 +44,7 @@ const createProduct = async (req, res) => {
     const dataBaru = await fetchProduct(data[0].insertId);
     res.status(201).json({ status: 'success', dataBaru });
   } catch (error) {
-    console.log(error.message);
+    res.status(500).json({ status: 'error', message: error.message });
   }
 };
 
@@ -63,7 +63,7 @@ const updateProduct = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error.message);
+    res.status(500).json({ status: 'error', message: error.message });
   }
 };
 
@@ -82,7 +82,7 @@ const deleteProduct = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error.message);
+    res.status(500).json({ status: 'error', message: error.message });
   }
 };
 
