@@ -21,7 +21,7 @@ async function fetchProduct(id) {
   return [row];
 }
 
-async function createProduct(data) {
+async function create(data) {
   console.log('disini');
   const { name, description, price, quantity } = data;
   const row = await pool.query(
@@ -31,7 +31,7 @@ async function createProduct(data) {
   return row;
 }
 
-async function updateProduct(id, dataUpdate) {
+async function update(id, dataUpdate) {
   const [targetProduct] = await fetchProduct(id);
   console.log(targetProduct);
   if (targetProduct) {
@@ -75,7 +75,7 @@ async function updateProduct(id, dataUpdate) {
   }
 }
 
-async function deleteProduct(id) {
+async function deletee(id) {
   const data = await pool.query('DELETE FROM products WHERE product_id = ?', [
     id,
   ]);
@@ -85,7 +85,7 @@ async function deleteProduct(id) {
 module.exports = {
   fetchProducts,
   fetchProduct,
-  createProduct,
-  updateProduct,
-  deleteProduct,
+  create,
+  update,
+  deletee,
 };
