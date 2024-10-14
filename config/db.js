@@ -10,7 +10,14 @@ const pool = db.createPool({
 
 async function fetchProducts() {
   const [row] = await pool.query('SELECT * FROM products');
-  return row;
+  const data2 = await pool.query(
+    'SELECT SUM(price) AS TOTALPRICE from products'
+  );
+
+  const [productNames] = await pool.query('SELECT name FROM products');
+
+  const TOTALPRICE = data2[0][0].TOTALPRICE;
+  return { row, TOTALPRICE, productNames };
 }
 
 async function fetchProduct(id) {

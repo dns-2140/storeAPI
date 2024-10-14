@@ -8,12 +8,17 @@ const {
 
 const getAllProducts = async (req, res) => {
   try {
-    const data = await fetchProducts();
-    console.log(data);
+    const { row, TOTALPRICE, productNames } = await fetchProducts();
+    const productNameOnly = productNames.map((e) => e.name);
+    console.log(productNameOnly);
+
     res.status(200).json({
       status: 'success',
-      count: data.length,
-      data,
+      count: row.length,
+      TOTALPRICE, //challenge 1,
+      productNames, //challenge 2,
+      productNameOnly,
+      row,
     });
   } catch (error) {
     res.status(500).json({ status: 'error', message: error.message });
